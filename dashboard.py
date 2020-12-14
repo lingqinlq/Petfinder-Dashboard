@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 from datetime import datetime
 
+stylesheet = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 df = pd.read_csv('dog.csv')
 
 intro1 = 'The data come from latest 10,000 adoptable dogs from petfinder.com.' \
@@ -54,7 +55,7 @@ def generate_table(dataframe, max_rows=10):
             html.Tr(
                 [
                 html.Td(html.Img(src=dataframe.iloc[i][0],
-                                 style={'height':'40%', 'width':'85%'}))] +
+                                 style={'height':'40%', 'width':'150%'}))] +
                 [html.Td(html.A(dataframe.iloc[i][1],
                         href=dataframe.iloc[i][16],
                         target="_blank"))] +
@@ -64,7 +65,7 @@ def generate_table(dataframe, max_rows=10):
     ], style={'marginLeft': 'auto', 'marginRight': 'auto'})
 
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=stylesheet)
 server = app.server
 
 app.layout = html.Div([
